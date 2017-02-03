@@ -20,7 +20,7 @@ class LinkedList {
     }
 
     this.length++;
-    return node;
+    return this;
   }
 
   head() {
@@ -85,7 +85,7 @@ class LinkedList {
       count = 0;
 
     if (index === 0) {
-      current = current.next;
+      this._head = current.next;
       current.prev = null;
     } else if (this.length !== 0 || index > -1 || index < this.length) {
       while (count < index) {
@@ -108,9 +108,12 @@ class LinkedList {
     while (current != null) {
       var nextNode = current.next;
       current.next = current.prev;
-      current.prev = nextNode;
+      current = nextNode;
     }
 
+    var temp = this._head;
+    this._head = this._tail;
+    this._tail = temp;
     return this;
   }
 
